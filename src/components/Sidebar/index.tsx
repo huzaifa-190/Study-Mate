@@ -1,7 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import SidebarLinkGroup from './SidebarLinkGroup';
-import Logo from '../../images/logo/logo.svg';
 
 interface SidebarProps {
     sidebarOpen: boolean;
@@ -100,9 +98,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             {/* <!-- SIDEBAR HEADER --> */}
 
             <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
-                {/* <!-- Sidebar Menu --> */}
                 <nav className="mt-5 py-4 px-4 lg:mt-9 lg:px-6">
-                    {/* <!-- Menu Group --> */}
                     <div>
                         <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
                             MENU
@@ -110,11 +106,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
 
                         <ul className="mb-6 flex flex-col gap-1.5">
 
-                            {/* <!-- Menu Item Calendar --> */}
+                            {/* <!-- Menu Item Dashboard --> */}
                             <li>
                                 <NavLink
-                                    to="/"
-                                    className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname == '/' &&
+                                    to="/dashboard"
+                                    className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname == '/dashboard' &&
                                         'bg-graydark dark:bg-meta-4'
                                         }`}
                                 >
@@ -146,11 +142,25 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                     Dashboard
                                 </NavLink>
                             </li>
+
+                            {/* <!-- Menu Item Task Manager --> */}
                             <li>
                                 <NavLink
-                                    to="/calendar"
-                                    className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('calendar') &&
+                                    to="/task-manager"
+                                    className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('task-manager') &&
                                         'bg-graydark dark:bg-meta-4'
+                                        }`}
+                                >
+                                    <i className="fa-solid fa-list-check"></i>
+                                    Task Manager
+                                </NavLink>
+                            </li>
+
+                            {/* <!-- Menu Item Timetable Generator --> */}
+                            <li>
+                                <NavLink
+                                    to="/timetable-generator"
+                                    className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('timetable-generator') && 'bg-graydark dark:bg-meta-4'
                                         }`}
                                 >
                                     <svg
@@ -166,78 +176,26 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                             fill=""
                                         />
                                     </svg>
-                                    Task Manager
-                                </NavLink>
-                            </li>
-                            {/* <!-- Menu Item Calendar --> */}
 
-                            {/* <!-- Menu Item Profile --> */}
-                            <li>
-                                <NavLink
-                                    to="/profile"
-                                    className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('profile') && 'bg-graydark dark:bg-meta-4'
-                                        }`}
-                                >
-                                    <svg
-                                        className="fill-current"
-                                        width="18"
-                                        height="18"
-                                        viewBox="0 0 18 18"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M9.0002 7.79065C11.0814 7.79065 12.7689 6.1594 12.7689 4.1344C12.7689 2.1094 11.0814 0.478149 9.0002 0.478149C6.91895 0.478149 5.23145 2.1094 5.23145 4.1344C5.23145 6.1594 6.91895 7.79065 9.0002 7.79065ZM9.0002 1.7719C10.3783 1.7719 11.5033 2.84065 11.5033 4.16252C11.5033 5.4844 10.3783 6.55315 9.0002 6.55315C7.62207 6.55315 6.49707 5.4844 6.49707 4.16252C6.49707 2.84065 7.62207 1.7719 9.0002 1.7719Z"
-                                            fill=""
-                                        />
-                                        <path
-                                            d="M10.8283 9.05627H7.17207C4.16269 9.05627 1.71582 11.5313 1.71582 14.5406V16.875C1.71582 17.2125 1.99707 17.5219 2.3627 17.5219C2.72832 17.5219 3.00957 17.2407 3.00957 16.875V14.5406C3.00957 12.2344 4.89394 10.3219 7.22832 10.3219H10.8564C13.1627 10.3219 15.0752 12.2063 15.0752 14.5406V16.875C15.0752 17.2125 15.3564 17.5219 15.7221 17.5219C16.0877 17.5219 16.3689 17.2407 16.3689 16.875V14.5406C16.2846 11.5313 13.8377 9.05627 10.8283 9.05627Z"
-                                            fill=""
-                                        />
-                                    </svg>
                                     TimeTable Generator
                                 </NavLink>
                             </li>
 
-                            {/* <!-- Menu Item Profile --> */}
+                            {/* <!-- Menu Item Chat with AI --> */}
                             <li>
                                 <NavLink
-                                    to="/forms/form-elements"
-                                    className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('forms') && 'bg-graydark dark:bg-meta-4'
+                                    to="chat-with-ai"
+                                    className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('chat-with-ai') && 'bg-graydark dark:bg-meta-4'
                                         }`}
                                 >
-                                    <svg
-                                        className="fill-current"
-                                        width="18"
-                                        height="18"
-                                        viewBox="0 0 18 18"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M9.0002 7.79065C11.0814 7.79065 12.7689 6.1594 12.7689 4.1344C12.7689 2.1094 11.0814 0.478149 9.0002 0.478149C6.91895 0.478149 5.23145 2.1094 5.23145 4.1344C5.23145 6.1594 6.91895 7.79065 9.0002 7.79065ZM9.0002 1.7719C10.3783 1.7719 11.5033 2.84065 11.5033 4.16252C11.5033 5.4844 10.3783 6.55315 9.0002 6.55315C7.62207 6.55315 6.49707 5.4844 6.49707 4.16252C6.49707 2.84065 7.62207 1.7719 9.0002 1.7719Z"
-                                            fill=""
-                                        />
-                                        <path
-                                            d="M10.8283 9.05627H7.17207C4.16269 9.05627 1.71582 11.5313 1.71582 14.5406V16.875C1.71582 17.2125 1.99707 17.5219 2.3627 17.5219C2.72832 17.5219 3.00957 17.2407 3.00957 16.875V14.5406C3.00957 12.2344 4.89394 10.3219 7.22832 10.3219H10.8564C13.1627 10.3219 15.0752 12.2063 15.0752 14.5406V16.875C15.0752 17.2125 15.3564 17.5219 15.7221 17.5219C16.0877 17.5219 16.3689 17.2407 16.3689 16.875V14.5406C16.2846 11.5313 13.8377 9.05627 10.8283 9.05627Z"
-                                            fill=""
-                                        />
-                                    </svg>
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i>
                                     Chat with AI
                                 </NavLink>
                             </li>
-                            {/* <!-- Menu Item Profile --> */}
-
-
-
-
-
-                            {/* <!-- Menu Item Settings --> */}
                         </ul>
                     </div>
 
                 </nav>
-                {/* <!-- Sidebar Menu --> */}
             </div >
         </aside >
     );

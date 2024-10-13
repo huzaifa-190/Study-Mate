@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+
+  .textEllipsis{
+    @apply truncate overflow-hidden whitespace-nowrap text-ellipsis
+  }
+  .completedTask{
+    @apply bg-slate-300 bg-opacity-80  line-through  backdrop:blur-md 
+  }
+  .requiredField{
+    @apply ring-red-500 ring-1 
+  }
+  .searchField-container{
+    @apply h-10  w-[350px] text-gray-600 bg-white border-[2px] pr-2 py-5 hover:shadow-lg transition-all duration-300 focus:outline-0 focus:outline-lightPurp rounded-md
+  }
+  .searchField{
+    @apply h-10  w-full text-gray-600  px-3 py-5  rounded-l-md focus:outline-none
+  }
+  .btn{
+    @apply active:opacity-50 transition-all  focus:outline-none active:outline-none
+ }
+  .labels{
+    @apply text-black sm:text-lg my-2 
+  }
+  .modalInputFields{
+    @apply  text-gray-400 text-sm h-11 sm:h-14 sm:w-72 px-3 py-2 mb-3 bg-slate-100 rounded-md focus:outline-none  
+  }
+  .input-fields{
+    @apply  h-full w-full bg-slate-100 px-3 py-2 focus:outline-none  rounded-l-md 
+
+  }
+  .input-field-container{
+    @apply flex text-gray-400 text-sm h-12 w-72 sm:w-72 sm:mb-3 pr-0 bg-slate-100 rounded-md focus:outline-none  
+
+  }
+  .requiredFieldLabel{
+    @apply text-sm ml-auto  text-red-500 transition-all ease-linear duration-500
+  }
+  .modal-btn{
+    @apply py-2 w-28 rounded-lg border-[1px] hover:bg-slate-100
+  }
+  .scroll-to-top-btn{
+    @apply fixed right-[44%] sm:right-[48%] bottom-4 flex items-center justify-center align-middle h-10 w-10 rounded-full z-10 shadow-xl shadow-purple-200
+      bg-yellow-400 hover:-translate-y-2 transition-all ease-in duration-150
+  }
+.t{
+  animation: fadeOut 2s forwards ease;
+  animation-timeline: scroll();
+}
+
+}
+
+.inner-white-shadow {
+  box-shadow: inset 0 0 4px rgba(255, 255, 255, 0.5);
+}
+:root {
+  overflow-x: hidden;
+   
+  /* overflow-y: hidden; */
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* line-height: 1.5;
+  font-weight: 400; */
+
+  /* color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424; */
+
+  /* font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
+}

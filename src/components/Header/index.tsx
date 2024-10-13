@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import DropdownMessage from './DropdownMessage';
 import LogoIcon from '../../images/logo/logo-icon.svg';
 import DarkModeSwitcher from './DarkModeSwitcher';
+import DropdownUser from './DropdownUser';
 
 const Header = (props: {
   sidebarOpen: string | boolean | undefined;
@@ -104,6 +105,7 @@ const Header = (props: {
           </ul>
 
           {/* <!-- User Area --> */}
+          <DropdownUser />
         </div>
       </div>
     </header>
