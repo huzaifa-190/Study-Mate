@@ -17,7 +17,8 @@ import AuthProtectedRoute from "./components/Auth/AuthProtectedRoute.jsx";
 import HomeProtectedRoute from "./components/Home/HomeProtectedRoute.jsx";
 import TasksLoader from "./components/TasksLoader.jsx";
 import { ToDoProvider } from "./contexts/ToDoContext";
-import useFireStore from "./Hooks/useFireStore";
+import useFireStore from "./hooks/useFireStore.js";
+
 
 // Lazy loaded components
 const SignUp = lazy(() => import("./components/Auth/SignUp.jsx"));
