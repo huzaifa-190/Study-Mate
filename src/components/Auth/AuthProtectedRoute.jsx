@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import useAuth from "../../Hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 import { useEffect, useRef } from "react";
 
 function AuthProtectedRoute({ children }) {
