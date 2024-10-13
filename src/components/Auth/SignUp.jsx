@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import { toast } from "react-toastify";
-import useAuth from "../../Hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
 function SignUp() {

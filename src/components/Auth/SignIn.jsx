@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import ClipLoader from "react-spinners/ClipLoader";
 
-import useAuth from "../../Hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 import { IoEllipseSharp } from "react-icons/io5";
 import { IoMdEye } from "react-icons/io";
 import { IoMdEyeOff } from "react-icons/io";
