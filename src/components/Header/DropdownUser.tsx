@@ -1,10 +1,19 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ClickOutside from '../ClickOutside';
-import UserOne from '../../images/user/user-01.png';
+import useAuth from '../../hooks/useAuth';
 
 const DropdownUser = () => {
+  // FUNCTIONS
+
+  function handleLogout() {
+    logOut()
+    navigate('/')
+  }
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const { currentUser, logOut } = useAuth()
+  const navigate = useNavigate();
 
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">
@@ -15,13 +24,20 @@ const DropdownUser = () => {
       >
         <span className="hidden text-right lg:block">
           <span className="block text-sm font-medium text-black dark:text-white">
-            Thomas Anree
+            {
+              currentUser.displayName == null ?
+                currentUser.email :
+                currentUser.displayName
+            }
           </span>
-          <span className="block text-xs">UX Designer</span>
         </span>
 
-        <span className="h-12 w-12 rounded-full">
-          <img src={UserOne} alt="User" />
+        <span className="h-12 w-12 rounded-full overflow-hidden">
+          {
+            currentUser.photoURL == null ?
+              <img src="./user.jpg" alt="User" className='w-full h-full object-cover' /> :
+              <img src={currentUser.photoURL} alt="User" className='w-full h-full object-cover' />
+          }
         </span>
 
         <svg
@@ -46,7 +62,7 @@ const DropdownUser = () => {
         <div
           className={`absolute right-0 mt-4 flex w-62.5 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark`}
         >
-          <button className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
+          <button className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base" onClick={handleLogout}>
             <svg
               className="fill-current"
               width="22"

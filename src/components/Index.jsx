@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import useAuth from "../Hooks/useAuth";
+import useAuth from "../hooks/useAuth";
 
 function SignUp() {
 
@@ -9,7 +9,7 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const onsubmit = ()=>{
+  const onsubmit = () => {
     navigate('sign-in')
   }
   return (
