@@ -7,12 +7,12 @@ const DropdownUser = () => {
   // FUNCTIONS
 
   function handleLogout() {
-    logOut()
     navigate('/')
+    logOut()
   }
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const { currentUser, logOut } = useAuth()
+  const { currentUser, setCurrentUser, logOut } = useAuth()
   const navigate = useNavigate();
 
   return (
@@ -23,22 +23,28 @@ const DropdownUser = () => {
         to="#"
       >
         <span className="hidden text-right lg:block">
-          <span className="block text-sm font-medium text-black dark:text-white">
-            {
-              currentUser.displayName == null ?
-                currentUser.email :
-                currentUser.displayName
-            }
-          </span>
-        </span>
-
-        <span className="h-12 w-12 rounded-full overflow-hidden">
           {
-            currentUser.photoURL == null ?
-              <img src="./user.jpg" alt="User" className='w-full h-full object-cover' /> :
-              <img src={currentUser.photoURL} alt="User" className='w-full h-full object-cover' />
+            currentUser != null ?
+              <span className="block text-sm font-medium text-black dark:text-white">
+                {
+                  currentUser.displayName == null ?
+                    currentUser.email :
+                    currentUser.displayName
+                }
+              </span> : null
           }
         </span>
+
+        {
+          currentUser != null ?
+            <span className="h-12 w-12 rounded-full overflow-hidden">
+              {
+                currentUser.photoURL == null ?
+                  <img src="./user.jpg" alt="User" className='w-full h-full object-cover' /> :
+                  <img src={currentUser.photoURL} alt="User" className='w-full h-full object-cover' />
+              }
+            </span> : null
+        }
 
         <svg
           className="hidden fill-current sm:block"

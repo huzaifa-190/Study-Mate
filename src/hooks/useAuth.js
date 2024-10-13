@@ -71,19 +71,26 @@ function useAuth() {
         }
     };
     const Google_Auth = () => {
+        return new Promise((res, rej) => {
+            try {
+                signInWithPopup(auth, provider)
+                    .then((result) => {
+                        const user = result.user;
+                        setCurrentUser(user);
+                        res(true)
+                    })
+            } catch (error) {
+                console.log(error)
+                rej(error)
+            }
 
-        signInWithPopup(auth, provider)
-            .then((result) => {
-                const user = result.user;
-                setCurrentUser(user); // Store the user info in the state
-            })
-            .catch((error) => {
-                console.error('Error during Google sign-in:', error);
-            });
+        })
+
     }
 
     return {
         currentUser,
+        setCurrentUser,
         loading,
         signUp,
         signIn,

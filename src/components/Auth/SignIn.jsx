@@ -40,7 +40,7 @@ function SignUp() {
           // toast.success(`Signed In Successfully with : ${user.email}`, {
           //   autoClose: 1500,
           // });
-          navigate("/task-manager", { replace: true });
+          navigate("/dashboard", { replace: true });
           // Clear history entries beyond the current page
           window.history.pushState(null, "", window.location.href);
           window.onpopstate = () => window.history.go(1);
@@ -70,15 +70,13 @@ function SignUp() {
   };
 
   const handleGoogleSignIn = async () => {
-    const user = await Google_Auth()
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        const user = result.user;
-        setUser(user); // Store the user info in the state
-      })
-      .catch((error) => {
-        console.error('Error during Google sign-in:', error);
-      });
+    Google_Auth().then(response => {
+      if (response == true) {
+        navigate('/dashboard')
+      }
+    }).catch(error => {
+      console.log(error)
+    })
   };
 
   // ---------------------------------------------------- RETURN -----------------------------------------------

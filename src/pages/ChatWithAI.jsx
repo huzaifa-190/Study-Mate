@@ -38,7 +38,7 @@ export default function ChatWithAI() {
     ]);
     const [isLoading, setIsLoading] = useState(false);
     const [search, setSearch] = useState('');
-    const genAI = new GoogleGenerativeAI('AIzaSyCA2Sbx6KZfo67BAkAR9fbmlGqyMCybDkE');
+    const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEN_API_KEY);
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
     // RETURN

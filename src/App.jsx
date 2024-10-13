@@ -97,7 +97,7 @@ function App() {
             }
           />
           <Route
-            path="sign-up"
+            path="/sign-up"
             element={
               <HomeProtectedRoute>
                 <Suspense fallback={<TasksLoader />}>
@@ -107,7 +107,7 @@ function App() {
             }
           />
           <Route
-            path="sign-in"
+            path="/sign-in"
             element={
               <HomeProtectedRoute>
                 <Suspense fallback={<TasksLoader />}>
@@ -120,7 +120,7 @@ function App() {
       </Routes>
 
       {
-        pathname.includes("sign-in") || pathname.includes("sign-up") || pathname === '/' ? null :
+        pathname.includes("sign-in") || pathname.includes("sign-up") || pathname.includes('home') || pathname == "/" ? null :
           <DefaultLayout>
             <Routes>
               <Route

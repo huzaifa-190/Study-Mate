@@ -34,7 +34,7 @@ function SignUp() {
           const user = await signUp(email, password);
           setEmail("");
           setPassword("");
-          navigate("/task-manager");
+          navigate("/dashboard");
           toast.success(`Signed Up Successfully with : ${user.email}`, {
             autoClose: 1500,
           });
