@@ -1,9 +1,17 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
+
+
+
 import ClickOutside from '../ClickOutside';
 import useAuth from '../../hooks/useAuth';
 
 const DropdownUser = () => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  // const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const { currentUser, logOut } = useAuth()
+  const navigate = useNavigate();
   // FUNCTIONS
 
   function handleLogout() {
@@ -11,9 +19,23 @@ const DropdownUser = () => {
     logOut()
   }
 
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const { currentUser, setCurrentUser, logOut } = useAuth()
-  const navigate = useNavigate();
+
+  const signOut = async () => {
+    event.preventDefault();
+    try {
+      const user = await logOut();
+      // toast("Signed Out !", { autoClose: 1500 });
+      navigate("/");
+      // Clear history entries beyond the current page
+      window.history.pushState(null, "", window.location.href);
+      window.onpopstate = () => window.history.go(1);
+    } catch (error) {
+      toast.error("Error signing out: ", error, { autoClose: 1500 });
+    } finally {
+      setShowConfirmationModal(false);
+    }
+  };
+
 
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">
@@ -68,7 +90,7 @@ const DropdownUser = () => {
         <div
           className={`absolute right-0 mt-4 flex w-62.5 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark`}
         >
-          <button className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base" onClick={handleLogout}>
+          <button className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary dark:hover:text-primary dark:text-white text-boxdark   lg:text-base" onClick={signOut}>
             <svg
               className="fill-current"
               width="22"

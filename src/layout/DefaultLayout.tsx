@@ -21,7 +21,8 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
 
           {/* <!-- ===== Main Content Start ===== --> */}
           <main>
-            <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+            {/* <div className="flex items-center justify-center mx-auto min-h-screen  max-w-screen-2xl p-4 md:p-6 2xl:p-10 "> */}
+            <div className=" mx-auto min-h-screen  max-w-screen-2xl p-4 md:p-6 2xl:p-10 ">
               {children}
             </div>
           </main>

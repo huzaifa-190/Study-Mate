@@ -89,7 +89,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="w-full max-w-3xl p-6 bg-gray-100 rounded-lg shadow-md mx-auto">
+    <div className="w-full max-w-3xl p-6 bg-gray-10 rounded-lg shadow-md mx-auto dark:bg-boxdark">
       <h1 className="text-xl font-bold text-center mb-6">Study Timetable Generator</h1>
 
       {/* Error Message */}

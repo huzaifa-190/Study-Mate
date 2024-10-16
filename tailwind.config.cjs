@@ -256,6 +256,10 @@ module.exports = {
         2: '0px 1px 4px rgba(0, 0, 0, 0.12)',
       },
       keyframes: {
+        'typingDot': {
+          '0%, 100%': { transform: 'translateY(0)' },    // Dots at their starting position
+          '50%': { transform: 'translateY(-1px)' },  // Dots rise up in the middle
+        },
         rotating: {
           '0%, 100%': { transform: 'rotate(360deg)' },
           '50%': { transform: 'rotate(0deg)' },
@@ -333,6 +337,9 @@ module.exports = {
           slidetorightfade: 'slide-to-right-fade 0.7s ease-out ',
           bounceUp: 'bounce-up 1s ease-out',
           openModal: 'slide-up-fade 0.3s ease-out',
+          typingdot1: 'typingDot 1.5s infinite ease-in-out',   // Dot 1 animation
+          typingdot2: 'typingDot 1.5s infinite ease-in-out 0.2s', // Dot 2 animation with delay
+          typingdot3: 'typingDot 1.5s infinite ease-in-out 0.4s', // Dot 3 animation with delay
         },
 
       },

@@ -61,12 +61,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
         >
             {/* <!-- SIDEBAR HEADER --> */}
             <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
-                <NavLink to="/">
+                <NavLink to="/dashboard">
                     {/* <img src={Logo} alt="Logo" /> */}
                     <button
                         className="flex items-center gap-1 btn"
                     >
-                        <h1 className="inner-white-shadow flex items-center justify-center h-10 w-10 sm:h-20 sm:w-20 p-4 rounded-full bg-purple-800 text-white border-purple-200 border-2 text-sm sm:text-2xl font-bold">
+                        <h1 className="inner-white-shadow flex items-center justify-center h-10 w-10 sm:h-16 sm:w-16 p-4 rounded-full bg-purple-600 text-white border-purple-200 border-2 text-sm sm:text-xl font-bold">
                             Study
                         </h1>
                         <h1 className="text-2xl text-white sm:text-2xl font-bold">Mate</h1>
@@ -104,7 +104,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             MENU
                         </h3>
 
-                        <ul className="mb-6 flex flex-col gap-1.5">
+                        <ul className="mb-6 flex flex-col gap-3">
 
                             {/* <!-- Menu Item Dashboard --> */}
                             <li>

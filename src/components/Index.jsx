@@ -17,7 +17,7 @@ function SignUp() {
       <div className="flex flex-col items-center justify-center h-[85%] w-full gap-5 ">
         <h1 className="font-bold text-4xl sm:text-7xl  text-black">Hello!</h1>
         <h1 className="text-xl mb-10 text-center ">
-          To manage your daily tasks, you need to Login first !
+          To Ace your studies and manage your daily tasks, you need to Login first !
         </h1>
         <button className="btn bg-purple-800 rounded-md text-white w-60 sm:w-72 py-4 animate-pulse"
           onClick={onsubmit}

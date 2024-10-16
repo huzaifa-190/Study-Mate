@@ -83,7 +83,9 @@ function App() {
   }, []);
 
   return loading ? (
-    <Loader />
+    <div className="flex h-screen w-screen items-center justify-center" >
+      <TasksLoader />
+    </div>
   ) : (
     <>
       <Routes>
@@ -155,8 +157,15 @@ function App() {
                 element={
                   <AuthProtectedRoute>
                     <ToDoWrapper>
-                      <Suspense fallback={<TasksLoader />}>
+                      <Suspense fallback={
+                        <div className="flex h-full w-full items-center justify-center" >
+                          <TasksLoader />
+                        </div>
+                      }>
+                      <>
+                        <PageTitle title="Study Mate - Task Manager" />
                         <Home />
+                      </>
                       </Suspense>
                     </ToDoWrapper>
                   </AuthProtectedRoute>

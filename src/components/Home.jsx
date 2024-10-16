@@ -111,7 +111,7 @@ function Home() {
             onClick={() => setAddTaskModalVisible(true)}
             className="btn "
           >
-            <IoIosAddCircle size={45} color="#6B21A8" />
+            <IoIosAddCircle size={45}  className="text-purple-800 dark:text-white" />
           </button>
         </div>
       </div>
@@ -130,8 +130,8 @@ function Home() {
       ) : !navigator.onLine ? (
         <NoInernet />
       ) : filteredTasks.length == 0 ? (
-        <h1 className="flex w-full h-72 justify-center items-center text-2xl sm:text-4xl text-black font-bold  ">
-          " No such tasks "
+        <h1 className="flex w-full h-72 justify-center items-center text-2xl sm:text-4xl dark:text-white text-black font-bold  ">
+          " No such tasks 🗂️"
         </h1>
       ) : (
         <div className="flex flex-col w-full items-center gap-6 p-4  animate-slideupfade">
