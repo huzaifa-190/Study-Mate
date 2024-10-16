@@ -1,26 +1,27 @@
+import React from 'react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
 
 
-
 import ClickOutside from '../ClickOutside';
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../../hookss/useAuth';
 
 const DropdownUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   // const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const { currentUser, logOut } = useAuth()
   const navigate = useNavigate();
+  
+  
+
   // FUNCTIONS
 
   function handleLogout() {
     navigate('/')
     logOut()
   }
-
-
-  const signOut = async () => {
+  const signOut = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     try {
       const user = await logOut();
@@ -30,10 +31,14 @@ const DropdownUser = () => {
       window.history.pushState(null, "", window.location.href);
       window.onpopstate = () => window.history.go(1);
     } catch (error) {
-      toast.error("Error signing out: ", error, { autoClose: 1500 });
-    } finally {
-      setShowConfirmationModal(false);
+      toast.error(`Error signing out: ${error instanceof Error ? error.message : "Unknown error"}`, {
+        autoClose: 1500,
+      });
+      
     }
+    //  finally {
+    //   setShowConfirmationModal(false);
+    // }
   };
 
 
@@ -49,9 +54,10 @@ const DropdownUser = () => {
             currentUser != null ?
               <span className="block text-sm font-medium text-black dark:text-white">
                 {
-                  currentUser.displayName == null ?
-                    currentUser.email :
-                    currentUser.displayName
+                  // currentUser.displayName == null ?
+                  (currentUser as { email: string }).email
+                    // currentUser.email 
+                    // currentUser.displayName
                 }
               </span> : null
           }
@@ -61,9 +67,9 @@ const DropdownUser = () => {
           currentUser != null ?
             <span className="h-12 w-12 rounded-full overflow-hidden">
               {
-                currentUser.photoURL == null ?
-                  <img src="./user.jpg" alt="User" className='w-full h-full object-cover' /> :
-                  <img src={currentUser.photoURL} alt="User" className='w-full h-full object-cover' />
+                <img src="./user.jpg" alt="User" className='w-full h-full object-cover' /> 
+                // currentUser.photoURL == null ?
+                  // <img src={currentUser.photoURL} alt="User" className='w-full h-full object-cover' />
               }
             </span> : null
         }

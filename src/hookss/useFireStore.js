@@ -2,8 +2,8 @@ import { React, useState, useEffect } from 'react';
 import { getDatabase, ref, set, push, get, onValue, remove } from 'firebase/database';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import app from '../DataBase/FirebaseConfig';
-import useAuth from "../hooks/useAuth.js";
+import app from '../DataBase/FirebaseConfig.js';
+import useAuth from "./useAuth.js";
 const db = getDatabase(app);
 
 

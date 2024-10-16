@@ -14,8 +14,8 @@ import FilterDropDown from './FilterDropDown';
 import Header from './Header';
 import NoInernet from './NoInernet';
 import TasksLoader from './TasksLoader';
-import useAuth from '../hooks/useAuth';
-import useFireStore from '../Hooks/useFireStore';
+import useAuth from '../hookss/useAuth';
+import useFireStore from '../hookss/useFireStore';
 
 import { useToDoContext } from '../contexts/ToDoContext';
 

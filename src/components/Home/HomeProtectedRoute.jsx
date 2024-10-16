@@ -1,7 +1,7 @@
-import { Navigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import useAuth from "../../hooks/useAuth";
-import { useEffect, useRef } from "react";
+import { Navigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import useAuth from '../../hookss/useAuth';
+import { useEffect, useRef } from 'react';
 
 function HomeProtectedRoute({ children }) {
   const { currentUser, loading } = useAuth();
@@ -20,7 +20,9 @@ function HomeProtectedRoute({ children }) {
 
   const showToast = debounce(() => {
     if (!toastId.current) {
-      toastId.current = toast.success("Welcome to Home...", { autoClose: 1000 });
+      toastId.current = toast.success('Welcome to Home...', {
+        autoClose: 1000,
+      });
     }
   }, 300);
 

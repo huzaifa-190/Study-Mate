@@ -1,20 +1,20 @@
-import React, { useState, useEffect, useRef } from "react";
-import ClipLoader from "react-spinners/ClipLoader";
-import { X } from "lucide-react";
+import React, { useState, useEffect, useRef } from 'react';
+import ClipLoader from 'react-spinners/ClipLoader';
+import { X } from 'lucide-react';
 
-import { useToDoContext } from "../contexts/ToDoContext";
-import useFireStore from "../Hooks/useFireStore";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useToDoContext } from '../contexts/ToDoContext';
+import useFireStore from '../hookss/useFireStore';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const loaderCss = {};
 
 function TaskInfoModal({
-  heading = "Task",
+  heading = 'Task',
   task = {},
   onClose,
-  id = "",
-  view = "",
+  id = '',
+  view = '',
 }) {
   const {
     tasks,
@@ -28,9 +28,9 @@ function TaskInfoModal({
   } = useToDoContext();
   const { tags } = useFireStore();
 
-  const [title, setTitle] = useState(task.title || "");
-  const [tag, setTag] = useState(task.tag || "");
-  const [tagColor, setTagColor] = useState("#62ff1f");
+  const [title, setTitle] = useState(task.title || '');
+  const [tag, setTag] = useState(task.tag || '');
+  const [tagColor, setTagColor] = useState('#62ff1f');
   const [formErrors, setFormErrors] = useState({
     title: false,
     tag: false,
@@ -42,9 +42,9 @@ function TaskInfoModal({
   useEffect(() => {
     if (task && task.tag) {
       const foundTag = tags.find(
-        (tg) => tg.title.toLowerCase().trim() === task.tag.toLowerCase().trim()
+        (tg) => tg.title.toLowerCase().trim() === task.tag.toLowerCase().trim(),
       );
-      setTagColor(foundTag?.tagColor || task.tagColor || "#62ff1f");
+      setTagColor(foundTag?.tagColor || task.tagColor || '#62ff1f');
     }
   }, [tags, task]);
 
@@ -55,9 +55,9 @@ function TaskInfoModal({
   const handleSubmit = async (event) => {
     event.preventDefault();
     const newErrors = {
-      title: title.trim() === "",
-      tag: tag.trim() === "",
-      tagColor: tagColor.trim() === "",
+      title: title.trim() === '',
+      tag: tag.trim() === '',
+      tagColor: tagColor.trim() === '',
     };
 
     setFormErrors(newErrors);
@@ -74,49 +74,49 @@ function TaskInfoModal({
         };
         const newTag = { title: tag.toLowerCase().trim(), tagColor };
 
-        if (view.toLowerCase() === "create") {
+        if (view.toLowerCase() === 'create') {
           AddTask(newTask);
-          console.log("Added task, now adding Subject...");
+          console.log('Added task, now adding Subject...');
 
           const tagTitles = tags.map((tg) => tg.title.toLowerCase().trim());
           const tagExists = tagTitles.includes(newTag.title);
 
           if (!tagExists) {
             WriteTags(newTag);
-            toast.success("Task created", { autoClose: 1000 });
+            toast.success('Task created', { autoClose: 1000 });
           } else {
             const prevTag = tags.find(
-              (tg) => tg.title.toLowerCase().trim() === newTag.title
+              (tg) => tg.title.toLowerCase().trim() === newTag.title,
             );
             if (prevTag && prevTag.tagColor !== newTag.tagColor) {
-              UpdateTags(prevTag.id, "Tasks", newTag);
+              UpdateTags(prevTag.id, 'Tasks', newTag);
               // toast.success("Task and Subject updated", { autoClose: 1000 });
             }
           }
         } else {
-          UpdateTask({ id, docName: "Tasks", task: newTask });
+          UpdateTask({ id, docName: 'Tasks', task: newTask });
           const tagExists = tags.some(
-            (tg) => tg.title.toLowerCase().trim() === newTag.title
+            (tg) => tg.title.toLowerCase().trim() === newTag.title,
           );
           if (!tagExists) {
             WriteTags(newTag);
           } else {
             const prevTag = tags.find(
-              (tg) => tg.title.toLowerCase().trim() === newTag.title
+              (tg) => tg.title.toLowerCase().trim() === newTag.title,
             );
             if (prevTag && prevTag.tagColor !== newTag.tagColor) {
-              UpdateTags(prevTag.id, "Tasks", newTag);
+              UpdateTags(prevTag.id, 'Tasks', newTag);
             }
           }
         }
 
-        toast.success("Task updated", { autoClose: 1000 });
+        toast.success('Task updated', { autoClose: 1000 });
         onClose();
       } else {
-        toast.error("Check your internet connection");
+        toast.error('Check your internet connection');
       }
     } else {
-      console.log("Form errors (empty fields):", formErrors);
+      console.log('Form errors (empty fields):', formErrors);
     }
   };
 
@@ -143,7 +143,7 @@ function TaskInfoModal({
           Title *
         </label>
         <input
-          readOnly={view.toLowerCase() === "readonly"}
+          readOnly={view.toLowerCase() === 'readonly'}
           title={view.toUpperCase()}
           type="text"
           id="titleField"
@@ -157,8 +157,9 @@ function TaskInfoModal({
               title: false,
             }));
           }}
-          className={`modalInputFields focus w-full textEllipsis ${formErrors.title ? "requiredField" : ""
-            }`}
+          className={`modalInputFields focus w-full textEllipsis ${
+            formErrors.title ? 'requiredField' : ''
+          }`}
         />
         {formErrors.title && (
           <h1 className="requiredFieldLabel">Field Required</h1>
@@ -169,7 +170,7 @@ function TaskInfoModal({
         </label>
         <input
           list="browsers"
-          readOnly={view.toLowerCase() === "readonly"}
+          readOnly={view.toLowerCase() === 'readonly'}
           title={view.toUpperCase()}
           type="text"
           id="tagField"
@@ -183,12 +184,14 @@ function TaskInfoModal({
               tag: false,
             }));
             const foundTag = tags.find(
-              (tagg) => tagg.title.toLowerCase() === e.target.value.toLowerCase()
+              (tagg) =>
+                tagg.title.toLowerCase() === e.target.value.toLowerCase(),
             );
-            setTagColor(foundTag?.tagColor || "#ffffff");
+            setTagColor(foundTag?.tagColor || '#ffffff');
           }}
-          className={`modalInputFields ${formErrors.tag ? "requiredField" : ""
-            }`}
+          className={`modalInputFields ${
+            formErrors.tag ? 'requiredField' : ''
+          }`}
         />
         <datalist id="browsers">
           {tags.map((tag) => (
@@ -200,13 +203,13 @@ function TaskInfoModal({
         )}
 
         <label htmlFor="tagColor" className="labels">
-          {view.toLowerCase() === "create" && "Select"} subject color *
+          {view.toLowerCase() === 'create' && 'Select'} subject color *
         </label>
         <input
           type="color"
           id="tagColor"
           value={tagColor}
-          disabled={view.toLowerCase() === "readonly"}
+          disabled={view.toLowerCase() === 'readonly'}
           onChange={(e) => {
             setTagColor(e.target.value);
             setFormErrors((prevErrors) => ({
@@ -214,14 +217,15 @@ function TaskInfoModal({
               tag: false,
             }));
           }}
-          className={`${view.toLowerCase() === "readonly"
-            ? "cursor-not-allowed"
-            : "cursor-pointer"
-            }`}
+          className={`${
+            view.toLowerCase() === 'readonly'
+              ? 'cursor-not-allowed'
+              : 'cursor-pointer'
+          }`}
         />
         <h1>{tagColor}</h1>
 
-        {view.toLowerCase() !== "readonly" && (
+        {view.toLowerCase() !== 'readonly' && (
           <button
             className="btn w-52 sm:w-60 lg:w-72 p-4 mt-2 text-white bg-lightPurp rounded-md mx-auto bg-opacity-65 focus:outline-none"
             type="submit"
@@ -229,20 +233,20 @@ function TaskInfoModal({
             {writingData ? (
               <div className="flex gap-2 items-center justify-center sm:text-lg">
                 <span className="sm:text-lg">
-                  {view.toLowerCase() === "create" ? "Adding" : "Saving"}
+                  {view.toLowerCase() === 'create' ? 'Adding' : 'Saving'}
                 </span>
                 <ClipLoader
-                  color={"white"}
+                  color={'white'}
                   cssOverride={loaderCss}
                   size={20}
                   aria-label="Adding new task ..."
                   data-testid="loader"
                 />
               </div>
-            ) : view === "editable" ? (
-              "Save"
+            ) : view === 'editable' ? (
+              'Save'
             ) : (
-              "CREATE"
+              'CREATE'
             )}
           </button>
         )}

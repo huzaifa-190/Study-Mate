@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import ClipLoader from "react-spinners/ClipLoader";
-import { toast } from "react-toastify";
-import useAuth from "../../hooks/useAuth";
-import { IoMdEye, IoMdEyeOff } from "react-icons/io";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import ClipLoader from 'react-spinners/ClipLoader';
+import { toast } from 'react-toastify';
+import useAuth from '../../hookss/useAuth';
+import { IoMdEye, IoMdEyeOff } from 'react-icons/io';
 
 function SignUp() {
   const navigate = useNavigate();
   const { signUp, loading } = useAuth();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [passwordShown, setPasswordShown] = useState(false);
   const [formErrors, setFormErrors] = useState({
     email: false,
@@ -20,8 +20,8 @@ function SignUp() {
   const onSubmit = async (event) => {
     event.preventDefault();
     const newErrors = {
-      email: email.trim() === "",
-      password: password.trim() === "",
+      email: email.trim() === '',
+      password: password.trim() === '',
     };
 
     setFormErrors(newErrors);
@@ -32,22 +32,20 @@ function SignUp() {
       if (navigator.onLine) {
         try {
           const user = await signUp(email, password);
-          setEmail("");
-          setPassword("");
-          navigate("/dashboard");
+          setEmail('');
+          setPassword('');
+          navigate('/dashboard');
           toast.success(`Signed Up Successfully with : ${user.email}`, {
             autoClose: 1500,
           });
         } catch (error) {
-          toast.error(
-            `Failed to Sign Up :: ${error.message}`
-          );
+          toast.error(`Failed to Sign Up :: ${error.message}`);
         }
       } else {
-        toast.warn("Check your internet connection.");
+        toast.warn('Check your internet connection.');
       }
     } else {
-      console.log("form errors i.e empty fields -> ", formErrors);
+      console.log('form errors i.e empty fields -> ', formErrors);
     }
   };
 
@@ -59,8 +57,9 @@ function SignUp() {
         <h1 className="text-4xl font-bold text-black mb-4">Sign Up!</h1>
 
         <div
-          className={`input-field-container ${formErrors.email ? "requiredField" : ""
-            } `}
+          className={`input-field-container ${
+            formErrors.email ? 'requiredField' : ''
+          } `}
         >
           <input
             type="text"
@@ -79,11 +78,12 @@ function SignUp() {
         </div>
 
         <div
-          className={`input-field-container flex items-center ${formErrors.password ? "requiredField" : ""
-            }`}
+          className={`input-field-container flex items-center ${
+            formErrors.password ? 'requiredField' : ''
+          }`}
         >
           <input
-            type={passwordShown ? "text" : "password"}
+            type={passwordShown ? 'text' : 'password'}
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);
@@ -106,19 +106,20 @@ function SignUp() {
 
         <button
           disabled={loading}
-          className={`btn bg-purple-800 rounded-md text-white w-72 sm:w-72 py-4 ${loading ? "opacity-60 cursor-not-allowed" : "opacity-100"
-            }`}
+          className={`btn bg-purple-800 rounded-md text-white w-72 sm:w-72 py-4 ${
+            loading ? 'opacity-60 cursor-not-allowed' : 'opacity-100'
+          }`}
           onClick={onSubmit}
         >
           {loading ? (
             <ClipLoader
-              color={"white"}
+              color={'white'}
               size={20}
               aria-label="Signing Up..."
               data-testid="loader"
             />
           ) : (
-            "Sign Up"
+            'Sign Up'
           )}
         </button>
 
@@ -126,7 +127,7 @@ function SignUp() {
           Already have an account?
           <button
             className="font-bold ml-2 btn"
-            onClick={() => navigate("/sign-in")}
+            onClick={() => navigate('/sign-in')}
           >
             Log In
           </button>

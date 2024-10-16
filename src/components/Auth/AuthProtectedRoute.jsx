@@ -1,7 +1,7 @@
-import { Navigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import useAuth from "../../hooks/useAuth";
-import { useEffect, useRef } from "react";
+import { Navigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import useAuth from '../../hookss/useAuth';
+import { useEffect, useRef } from 'react';
 
 function AuthProtectedRoute({ children }) {
   const { currentUser, loading } = useAuth();
@@ -21,7 +21,7 @@ function AuthProtectedRoute({ children }) {
   const showToast = debounce(() => {
     if (!toastId.current) {
       // toastId.current = toast.warn("Sign In to proceed ...");
-      console.log("Sign In to proceed ...")
+      console.log('Sign In to proceed ...');
     }
   }, 300);
 

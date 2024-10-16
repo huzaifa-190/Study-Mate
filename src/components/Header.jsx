@@ -1,14 +1,14 @@
-import { React, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { React, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { toast } from "react-toastify";
-import { MdDarkMode } from "react-icons/md";
-import { PiSignOutBold } from "react-icons/pi";
+import { toast } from 'react-toastify';
+import { MdDarkMode } from 'react-icons/md';
+import { PiSignOutBold } from 'react-icons/pi';
 
-import useAuth from "../Hooks/useAuth";
-import useFireStore from "../Hooks/useFireStore";
-import ConfirmModal from "./ConfirmModal";
-import GenAi from "./GenAi.jsx"
+import useAuth from '../hookss/useAuth.js';
+import useFireStore from '../hookss/useFireStore.js';
+import ConfirmModal from './ConfirmModal';
+import GenAi from './GenAi.jsx';
 
 export default function Header() {
   const { logOut, currentUser, loading } = useAuth();
@@ -22,12 +22,12 @@ export default function Header() {
     try {
       const user = await logOut();
       // toast("Signed Out !", { autoClose: 1500 });
-      navigate("/sign-in");
+      navigate('/sign-in');
       // Clear history entries beyond the current page
-      window.history.pushState(null, "", window.location.href);
+      window.history.pushState(null, '', window.location.href);
       window.onpopstate = () => window.history.go(1);
     } catch (error) {
-      toast.error("Error signing out: ", error, { autoClose: 1500 });
+      toast.error('Error signing out: ', error, { autoClose: 1500 });
     } finally {
       setShowConfirmationModal(false);
     }
@@ -51,12 +51,10 @@ export default function Header() {
 
         {/* Right Div in Header containing email and avatar */}
         <div className="flex flex-wrap-reverse ml-auto items-center justify-end px-4 gap-5 sm:gap-5   ">
-           
           {/* <GenAi/> */}
 
-
           <h2 className="flex sm:flex text-sm sm:text-lg font-semibold text-gray-600">
-            {currentUser && currentUser.email} 
+            {currentUser && currentUser.email}
             {/* --- {currentUser && currentUser.uid} */}
           </h2>
           <button className="btn" title="dark mode">
