@@ -17,7 +17,7 @@ import AuthProtectedRoute from "./components/Auth/AuthProtectedRoute.jsx";
 import HomeProtectedRoute from "./components/Home/HomeProtectedRoute.jsx";
 import TasksLoader from "./components/TasksLoader.jsx";
 import { ToDoProvider } from "./contexts/ToDoContext";
-import useFireStore from "./hooks/useFireStore.js";
+import useFireStore from "./Hooks/useFireStore.js"
 
 
 // Lazy loaded components
@@ -174,7 +174,6 @@ function App() {
             </Routes>
           </DefaultLayout>
       }
-      <ToastContainer />
     </>
   );
 }

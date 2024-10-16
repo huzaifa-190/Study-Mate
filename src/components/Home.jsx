@@ -1,44 +1,44 @@
-import { React, useEffect, useState } from "react";
+import { React, useEffect, useState } from 'react';
 
-import { IoIosAddCircle } from "react-icons/io";
-import { FaChevronRight } from "react-icons/fa";
-import { FaChevronLeft } from "react-icons/fa6";
-import { IoFilter } from "react-icons/io5";
-import { PiSignOutBold } from "react-icons/pi";
-import { MdOutlineKeyboardDoubleArrowUp } from "react-icons/md";
-import { RxCross2 } from "react-icons/rx";
+import { IoIosAddCircle } from 'react-icons/io';
+import { FaChevronRight } from 'react-icons/fa';
+import { FaChevronLeft } from 'react-icons/fa6';
+import { IoFilter } from 'react-icons/io5';
+import { PiSignOutBold } from 'react-icons/pi';
+import { MdOutlineKeyboardDoubleArrowUp } from 'react-icons/md';
+import { RxCross2 } from 'react-icons/rx';
 
-import TaskCard from "./TaskCard";
-import TaskInfoModal from "./TaskInfoModal";
-import FilterDropDown from "./FilterDropDown";
-import Header from "./Header";
-import NoInernet from "./NoInernet";
-import TasksLoader from "./TasksLoader";
-import useAuth from "../Hooks/useAuth";
-import useFireStore from "../Hooks/useFireStore";
+import TaskCard from './TaskCard';
+import TaskInfoModal from './TaskInfoModal';
+import FilterDropDown from './FilterDropDown';
+import Header from './Header';
+import NoInernet from './NoInernet';
+import TasksLoader from './TasksLoader';
+import useAuth from '../hooks/useAuth';
+import useFireStore from '../Hooks/useFireStore';
 
-import { useToDoContext } from "../contexts/ToDoContext";
+import { useToDoContext } from '../contexts/ToDoContext';
 
 function Home() {
   const { tasks, fetchingData } = useToDoContext();
   const { currentUser } = useAuth();
   const { tags } = useFireStore();
   const [addTaskModalVisible, setAddTaskModalVisible] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [currentFilterTag, setCurrentFilterTag] = useState("All");
+  const [searchQuery, setSearchQuery] = useState('');
+  const [currentFilterTag, setCurrentFilterTag] = useState('All');
   const [isScrollToTopBtnVisible, setIsScrollToTopBtnVisible] = useState(false);
 
   // ---------------------------------------------Filtered tasks along with on search query----------------------------------------
   const filteredTasks = tasks?.filter((task) => {
-    console.log("Filtering Tasks ...", task);
-    if (currentFilterTag?.toLowerCase() == "all") {
+    console.log('Filtering Tasks ...', task);
+    if (currentFilterTag?.toLowerCase() == 'all') {
       return task.title.toLowerCase().includes(searchQuery.toLowerCase());
-    } else if (currentFilterTag?.toLowerCase() == "pending") {
+    } else if (currentFilterTag?.toLowerCase() == 'pending') {
       return (
         task.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
         !task.completed
       );
-    } else if (currentFilterTag?.toLowerCase() == "completed") {
+    } else if (currentFilterTag?.toLowerCase() == 'completed') {
       return (
         task.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
         task.completed
@@ -65,14 +65,14 @@ function Home() {
   const scrollToTop = async () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", toggleVisibility);
+    window.addEventListener('scroll', toggleVisibility);
     return () => {
-      window.removeEventListener("scroll", toggleVisibility);
+      window.removeEventListener('scroll', toggleVisibility);
     };
   }, []);
 
@@ -92,7 +92,6 @@ function Home() {
         </button>
         <div className="sm:mr-auto flex w-full lg:justify-center items-center gap-4  ">
           <div className="searchField-container flex items-center justify-center">
-
             <input
               type="text"
               id="searchField"
@@ -101,7 +100,13 @@ function Home() {
               onChange={(e) => setSearchQuery(e.target.value)}
               className="searchField mr-auo"
             />
-            <button className={`btn animate-openModal ${searchQuery.length > 0 ? "flex" : "hidden"}`} onClick={() => setSearchQuery('')} title="clear">
+            <button
+              className={`btn animate-openModal ${
+                searchQuery.length > 0 ? 'flex' : 'hidden'
+              }`}
+              onClick={() => setSearchQuery('')}
+              title="clear"
+            >
               <RxCross2 size={24} color="grey" />
             </button>
           </div>
@@ -111,7 +116,10 @@ function Home() {
             onClick={() => setAddTaskModalVisible(true)}
             className="btn "
           >
-            <IoIosAddCircle size={45}  className="text-purple-800 dark:text-white" />
+            <IoIosAddCircle
+              size={45}
+              className="text-purple-800 dark:text-white"
+            />
           </button>
         </div>
       </div>
