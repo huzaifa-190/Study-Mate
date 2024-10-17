@@ -37,7 +37,7 @@ function HomeProtectedRoute({ children }) {
   if (!currentUser) {
     return children;
   } else {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/dashboard" replace />;
   }
 }
 
