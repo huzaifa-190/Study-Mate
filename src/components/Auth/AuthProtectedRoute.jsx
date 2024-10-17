@@ -27,7 +27,7 @@ function AuthProtectedRoute({ children }) {
 
   useEffect(() => {
     if (!currentUser && !loading) {
-      showToast();
+      // showToast();
     }
   }, [currentUser, loading]);
 
