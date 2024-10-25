@@ -122,15 +122,15 @@ function TaskInfoModal({
 
   return (
     <div
-      className="flex w-screen h-screen items-center justify-center fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm z-20"
+      className="flex w-full h-full items-center justify-center pt-22 fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm z-20"
       onClick={closeOnBgTap}
       ref={bgRef}
     >
       <form
-        className="flex flex-col w-[80%] sm:w-[70%] md:w-[60%] lg:w-[50%] p-8 sm:p-8 rounded-3xl bg-white z-10 animate-openModal"
+        className="flex flex-col w-[80%] sm:w-[70%] md:w-[60%] lg:w-[40%] p-8 sm:p-8 rounded-3xl lg:ml-72.5  bg-white z-10 animate-openModal "
         onSubmit={handleSubmit}
       >
-        <div className="flex flex-row mb-4 items-center">
+        <div className="flex flex-row mb-4 items-center ">
           <h1 className="text-xl sm:text-2xl ml-auto font-bold text-gray-800">
             {heading}
           </h1>

@@ -62,7 +62,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             {/* <!-- SIDEBAR HEADER --> */}
             <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
                 <NavLink to="/dashboard">
-                    {/* <img src={Logo} alt="Logo" /> */}
                     <button
                         className="flex items-center gap-1 btn"
                     >
@@ -73,7 +72,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     </button>
                 </NavLink>
 
-                <button
+                {/* <button
                     ref={trigger}
                     onClick={() => setSidebarOpen(!sidebarOpen)}
                     aria-controls="sidebar"
@@ -93,7 +92,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             fill=""
                         />
                     </svg>
-                </button>
+                </button> */}
             </div>
             {/* <!-- SIDEBAR HEADER --> */}
 
@@ -110,6 +109,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <li>
                                 <NavLink
                                     to="/dashboard"
+                                    onClick={()=>{setSidebarOpen(false)}}
                                     className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname == '/dashboard' &&
                                         'bg-graydark dark:bg-meta-4'
                                         }`}
@@ -188,7 +188,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                     className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('chat-with-ai') && 'bg-graydark dark:bg-meta-4'
                                         }`}
                                 >
-                                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                    <i className="fa-solid fa-wand-magic-sparkles"></i>
                                     Chat with AI
                                 </NavLink>
                             </li>

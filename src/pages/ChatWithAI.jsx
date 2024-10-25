@@ -107,7 +107,9 @@ export default function ChatWithAI() {
         <button
           type="button"
           onClick={handleClick}
-          className="ml-2 px-4 py-2 bg-purple- text-white rounded-lg hover:translate-x-1 ease-linear duration-200 "
+          className={`ml-2 px-4 py-2 bg-purple- text-white rounded-lg hover:translate-x-1 ease-linear duration-200 ${isLoading ? "cursor-not-allowed" : ''} `}
+          disabled={isLoading}
+          
         >
           <MdSend size={28} color="#6B21A8" />
         </button>

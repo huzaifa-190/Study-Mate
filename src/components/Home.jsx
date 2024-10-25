@@ -79,7 +79,7 @@ function Home() {
   /* -------------------------------------------------------------- RETURN -------------------------------------------------- */
 
   return (
-    <div className="flex-col h-screen w-full items-center justify-center px-2 sm:px-10 ">
+    <div className="flex-col h-full w-full items-center justify-center px-2 sm:px-10 ">
       {/* -------------------------------------------------------------- Search-bar & filter container -------------------------------------------------- */}
       <div className="flex items-start justify-center gap-4 mt-5 sm:mt-10 mb-6 px-4 animate-slidetoleftfade ">
         {/* FILTER DROPDOWN FOR >= LG-Screen SIZES*/}
@@ -174,13 +174,13 @@ function Home() {
       )}
 
       {addTaskModalVisible ? (
-        <div>
+        // <div>
           <TaskInfoModal
             heading="Create Task"
             view="create"
             onClose={() => setAddTaskModalVisible(false)}
           />
-        </div>
+        // </div>
       ) : null}
     </div>
   );

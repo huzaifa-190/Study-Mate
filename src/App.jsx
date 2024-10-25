@@ -161,15 +161,15 @@ function App() {
                   <ToDoWrapper>
                     <Suspense
                       fallback={
-                        <div className="flex h-full w-full items-center justify-center">
+                        <>
                           <TasksLoader />
-                        </div>
+                        </>
                       }
                     >
-                      <>
+                      <div className='flex  max-h-full'>
                         <PageTitle title="Study Mate - Task Manager" />
                         <Home />
-                      </>
+                      </div>
                     </Suspense>
                   </ToDoWrapper>
                 </AuthProtectedRoute>
