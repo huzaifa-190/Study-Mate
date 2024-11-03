@@ -182,8 +182,8 @@ function App() {
                       }
                     >
                       <div className='flex  max-h-full'>
-                        <PageTitle title="Study Mate - Task Manager" />
-                        <Home />
+                        <PageTitle title="Study Mate - AI Chat" />
+                        <ChatWithAI />
                       </div>
                     </Suspense>
                   </ToDoWrapper>
