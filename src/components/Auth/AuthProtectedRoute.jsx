@@ -36,7 +36,7 @@ function AuthProtectedRoute({ children }) {
   if (currentUser) {
     return children;
   } else {
-    return <Navigate to="/sign-in" replace />;
+    return <Navigate to="/" replace />;
   }
 }
 

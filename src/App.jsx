@@ -130,28 +130,64 @@ function App() {
             <Route
               path="/dashboard"
               element={
-                <>
-                  <PageTitle title="Study Mate - Dashboard" />
-                  <ECommerce />
-                </>
+                <AuthProtectedRoute>
+                  <ToDoWrapper>
+                    <Suspense
+                      fallback={
+                        <>
+                          <TasksLoader />
+                        </>
+                      }
+                    >
+                      <div className='flex  max-h-full'>
+                        <PageTitle title="Study Mate - Dashboard" />
+                        <ECommerce />
+                      </div>
+                    </Suspense>
+                  </ToDoWrapper>
+                </AuthProtectedRoute>
               }
             />
             <Route
               path="/timetable-generator"
               element={
-                <>
-                  <PageTitle title="Study Mate - TimeTable Generator" />
-                  <TimeTableGenerator />
-                </>
+                <AuthProtectedRoute>
+                  <ToDoWrapper>
+                    <Suspense
+                      fallback={
+                        <>
+                          <TasksLoader />
+                        </>
+                      }
+                    >
+                      <div className='flex  max-h-full'>
+                      <PageTitle title="Study Mate - TimeTable Generator" />
+                      <TimeTableGenerator />
+                      </div>
+                    </Suspense>
+                  </ToDoWrapper>
+                </AuthProtectedRoute>
               }
             />
             <Route
               path="/chat-with-ai"
               element={
-                <>
-                  <PageTitle title="Study Mate - Chat with AI" />
-                  <ChatWithAI />
-                </>
+                <AuthProtectedRoute>
+                  <ToDoWrapper>
+                    <Suspense
+                      fallback={
+                        <>
+                          <TasksLoader />
+                        </>
+                      }
+                    >
+                      <div className='flex  max-h-full'>
+                        <PageTitle title="Study Mate - Task Manager" />
+                        <Home />
+                      </div>
+                    </Suspense>
+                  </ToDoWrapper>
+                </AuthProtectedRoute>
               }
             />
             <Route
