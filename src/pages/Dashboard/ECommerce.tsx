@@ -1,6 +1,7 @@
 import React from 'react';
-import ChartThree from '../../components/Charts/ChartThree';
+import ChartOne from '../../components/Charts/ChartOne';
 import ChartTwo from '../../components/Charts/ChartTwo';
+import ChartThree from '../../components/Charts/ChartThree';
 
 const ECommerce: React.FC = () => {
   return (
