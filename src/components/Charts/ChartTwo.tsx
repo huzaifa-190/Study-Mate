@@ -22,9 +22,6 @@ interface ChartSeries {
 const ChartTwo: React.FC = () => {
   const { tasks } = useToDoContext();
 
-  // 📌 Extract unique tags
-  const tags = Array.from(new Set(tasks.map((task: Task) => task.tag)));
-
   // 📌 Series state
   const [series, setSeries] = useState<ChartSeries[]>([]);
 
@@ -49,11 +46,20 @@ const ChartTwo: React.FC = () => {
       width: 2,
       colors: ['transparent'],
     },
-    xaxis: {
-      categories: tags, // this will update dynamically
-      labels: {
-    formatter: (val) => val.toUpperCase(),
+    noData: {
+      text: 'No tasks to display',
+      align: 'center',
+      verticalAlign: 'middle',
+      style: {
+        color: '#999',
+        fontSize: '16px',
+      },
     },
+    xaxis: {
+      categories: [], // will update dynamically
+      labels: {
+        formatter: (val) => val.toUpperCase(),
+      },
     },
     yaxis: {
       title: { text: 'Tasks Count' },
@@ -61,7 +67,7 @@ const ChartTwo: React.FC = () => {
         formatter: (val) => Math.round(val).toString(),
       },
       forceNiceScale: true,
-      tickAmount: 5, // or auto — adjust if needed
+      tickAmount: 5,
     },
     legend: {
       position: 'top',
@@ -76,29 +82,28 @@ const ChartTwo: React.FC = () => {
 
   // 📌 Update chart when tasks change
   useEffect(() => {
-    const pendingCounts = tags.map((tag) =>
+    const activeTags =
+      tasks.length > 0
+        ? Array.from(new Set(tasks.map((task: Task) => task.tag)))
+        : ['No Tasks'];
+
+    const pendingCounts = activeTags.map((tag) =>
       tasks.filter((task: Task) => task.tag === tag && !task.completed).length
     );
 
-    const completedCounts = tags.map((tag) =>
+    const completedCounts = activeTags.map((tag) =>
       tasks.filter((task: Task) => task.tag === tag && task.completed).length
     );
-
-    const tagColors = tags.map((tag) => {
-      const t = (tasks as Task[]).find((task: Task) => task.tag === tag);
-      return t ? t.tagColor : '#999';
-    });
 
     setSeries([
       { name: 'Pending', data: pendingCounts },
       { name: 'Completed', data: completedCounts },
     ]);
 
-    // Update categories and colors dynamically
     setOptions((prevOptions) => ({
       ...prevOptions,
-      xaxis: { categories: tags },
-      colors: ['#F97316', '#22C55E'] // Pending first, Completed second
+      xaxis: { ...prevOptions.xaxis, categories: activeTags },
+      colors: ['#F97316', '#22C55E'],
     }));
   }, [tasks]);
 

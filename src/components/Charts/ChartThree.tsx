@@ -25,10 +25,10 @@ const ChartThree: React.FC = () => {
     chart: {
       fontFamily: 'Satoshi, sans-serif',
       type: 'donut',
-      height: 350, // ← keep height consistent
+      height: 350,
     },
-    colors: colors, // dynamically from tags
-    labels: labels, // dynamically from tags
+    colors: colors,
+    labels: labels,
     legend: {
       show: false,
       position: 'bottom',
@@ -44,29 +44,40 @@ const ChartThree: React.FC = () => {
     dataLabels: {
       enabled: true,
     },
+    noData: {
+      text: 'No tasks to display',
+      align: 'center',
+      verticalAlign: 'middle',
+      style: {
+        color: '#999',
+        fontSize: '16px',
+      },
+    },
   };
 
   // 📌 Compute live chart data when tasks change
   useEffect(() => {
-    // Get unique tags
-    const tagSet = Array.from(new Set(tasks.map((task: Task) => task.tag)));
+    if (tasks.length === 0) {
+      // No tasks fallback
+      setLabels(['No Tasks']);
+      setSeries([1]);
+      setColors(['#CBD5E1']); // Tailwind slate-300
+    } else {
+      const tagSet = Array.from(new Set(tasks.map((task: Task) => task.tag)));
 
-    // Count tasks per tag
-    const taskCounts = tagSet.map(
-      (tag) => tasks.filter((task: Task) => task.tag === tag).length
-    );
+      const taskCounts = tagSet.map(
+        (tag) => tasks.filter((task: Task) => task.tag === tag).length
+      );
 
-    // Extract tag colors
-    const tagColors = tagSet.map((tag) => {
-  const t = [...tasks].reverse().find((task: Task) => task.tag === tag);
-  console.log('Tag:', tag, 'Color:', t ? t.tagColor : '#999');
-  return t ? t.tagColor : '#999';
-});
+      const tagColors = tagSet.map((tag) => {
+        const t = [...tasks].reverse().find((task: Task) => task.tag === tag);
+        return t ? t.tagColor : '#999';
+      });
 
-
-    setLabels(tagSet);
-    setSeries(taskCounts);
-    setColors(tagColors);
+      setLabels(tagSet);
+      setSeries(taskCounts);
+      setColors(tagColors);
+    }
   }, [tasks]);
 
   return (
@@ -84,15 +95,14 @@ const ChartThree: React.FC = () => {
             series={series}
             type="donut"
             height={350}
-            
           />
         </div>
       </div>
 
-      <div className="-mx-8 flex flex-wrap items-center   gap-y-3">
+      <div className="-mx-8 flex flex-wrap items-center gap-y-3">
         {labels.map((label, idx) => (
           <div key={idx} className="sm:w-1/2 w-full px-8">
-            <div className="flex w-full  gap-5 ">
+            <div className="flex w-full gap-5">
               <span
                 className="mr-2 block h-3 w-full max-w-3 rounded-full"
                 style={{ backgroundColor: colors[idx] }}
@@ -100,8 +110,10 @@ const ChartThree: React.FC = () => {
               <p className="flex w-full justify-between text-sm font-medium text-black dark:text-white">
                 <span>{label}</span>
                 <span>
-                  {series[idx]
-                    ? `${Math.round((series[idx] / series.reduce((a, b) => a + b, 0)) * 100)}%`
+                  {series[idx] && tasks.length > 0
+                    ? `${Math.round(
+                        (series[idx] / series.reduce((a, b) => a + b, 0)) * 100
+                      )}%`
                     : '0%'}
                 </span>
               </p>
