@@ -83,8 +83,8 @@ function SignUp() {
 
   // ---------------------------------------------------- RETURN -----------------------------------------------
   return (
-    <div className="flex-1 flex-col h-full w-screen items-center justify-center py-4 mt-10  sm:px-10 overflow-x-hidden animate-slidetorightfade">
-      <div className="flex flex-col items-center sm:justify-center h-full w-full gap-5 ">
+    <div className="flex-1 flex-col min-h-screen w-screen items-center justify-center py-4 mt-10  sm:px-10 overflow-x-hidden animate-slidetorightfade">
+      <div className="flex flex-col items-center sm:justify-center h-full w-full gap-5  ">
         <h1 className="text-4xl font-bold text-black mb-4">Sign In !</h1>
         <div
           className={`input-field-container flex items-center focus  ${
